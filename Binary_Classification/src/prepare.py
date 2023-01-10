@@ -22,13 +22,13 @@ def create_datasets(config):
     device = config["device"]
     print("Running on: %s" % device)
 
-    filename_output = scripts_dir + "labels.csv"
+    filename_output = scripts_dir + "../labels.csv"
     labels = pd.read_csv(filename_output, sep="\t", index_col=0).astype(int)[['WT']]
     labels = labels + 1
     labels = labels.replace(2, 0)
     labels.columns = ['Mal']
 
-    filename_input_mat = scripts_dir + "gene_expr.csv"
+    filename_input_mat = scripts_dir + "../gene_expr.csv"
     count_mat_geno_sub = parse_input(filename_input_mat, labels)
 
     if (labels.index == count_mat_geno_sub.index).all():

@@ -1,4 +1,4 @@
-from Network_hierarchy import *
+from Network import *
 import shutil
 from es import *
 from prepare import *
@@ -272,7 +272,6 @@ def fit(config, checkpoint_dir=None,data_dir=None):
 
             toXtrain = X_train[limit1:limit2]
             toYtrain = Y_train[limit1:limit2]
-            print(toYtrain)
 
             optimizer.zero_grad()
 

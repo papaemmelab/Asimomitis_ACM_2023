@@ -36,10 +36,10 @@ def create_datasets(config):
     for lh in list(local_hierarchies.keys()):
         local_hierarchies[lh] = [lhi for lhi in local_hierarchies[lh] if lhi in mutcols]
 
-    filename_output = scripts_dir + "patient_spec_labels.csv"
+    filename_output = scripts_dir + "../patient_spec_labels.csv"
     labels = pd.read_csv(filename_output, sep="\t", index_col=0).astype(int).loc[:,mutcols]
 
-    filename_input_mat = scripts_dir + "+patient_spec_gene_expr.csv"
+    filename_input_mat = scripts_dir + "../patient_spec_gene_expr.csv"
     count_mat_geno_sub = parse_input(filename_input_mat, labels)
 
     if (labels.index == count_mat_geno_sub.index).all():

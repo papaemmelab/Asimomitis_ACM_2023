@@ -21,10 +21,10 @@ def parse_input(filename_mat, labs):
 def separate_testset(labs, mat, perc_split=0.06):
 
     random.seed(7)
-    temp1 = random.sample(labs.index[labs['Mal'] == 0].tolist(), round(len(labs.index[labs['Mal'] == 0].tolist())*perc_split)) #0.2
+    temp1 = random.sample(labs.index[labs['Mal'] == 0].tolist(), round(len(labs.index[labs['Mal'] == 0].tolist())*perc_split)) 
 
     random.seed(7)
-    temp2 = random.sample(labs.index[labs['Mal'] == 1].tolist(), round(len(labs.index[labs['Mal'] == 1].tolist())*perc_split)) #0.2
+    temp2 = random.sample(labs.index[labs['Mal'] == 1].tolist(), round(len(labs.index[labs['Mal'] == 1].tolist())*perc_split)) 
     test_labs = temp1 + temp2
 
     random.seed(7)
@@ -45,7 +45,6 @@ def cells_to_probs_class(net, cells, mode):
     else:
         output = net(cells.float())
 
-    # convert output probabilities to predicted class
     if mode=="train":
         y_hat_class = []
     else:

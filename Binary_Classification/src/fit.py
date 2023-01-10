@@ -545,7 +545,6 @@ def train_all(config,num_epochs):
         Y_train = Y_train[crand,]
 
         for iterat in range(int(len(X_train)/batch_size)):
-
             limit1 = iterat*batch_size
             limit2 = (iterat+1)*batch_size
 

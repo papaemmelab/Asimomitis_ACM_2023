@@ -103,7 +103,7 @@ def main():
     config = {
         "batch_size": tune.choice([8, 16, 32, 64]),
         "lr": tune.loguniform(1e-4, 1e-1),
-        "scaling": scaling, #tune.choice(['MaxAbs','Normalization01','Normalization-11','Standardization','no']),
+        "scaling": scaling,
         "weight_decay": tune.choice([0, 0.01, 0.001, 0.0001]),
         "weighted_loss": tune.choice(['yes','no']),
         "dropout_rate": tune.choice([0.0,0.1,0.2,0.3,0.4,0.5]),
