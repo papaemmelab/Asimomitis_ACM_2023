@@ -105,7 +105,6 @@ def fit(config, checkpoint_dir=None,data_dir=None):
     input_size = len(touseX.columns.tolist())
     output_size = len(classes)
 
-    print(classes)
     weight = {}
     for pos, mut in enumerate(classes):
         if -1. in list(np.unique(touseY.values[:, pos])):
@@ -175,8 +174,6 @@ def fit(config, checkpoint_dir=None,data_dir=None):
 
     writer.add_graph(model, X_train.float())
 
-    print(model)
-
     Y_test_word_labels_dict = {}
     for i in Y_test_pd.index.tolist():
         Y_test_word_labels_dict[i] = ",".join(Y_test_pd.columns[Y_test_pd.loc[i,] == 1.0].tolist())
@@ -192,7 +189,6 @@ def fit(config, checkpoint_dir=None,data_dir=None):
 
     if weighted_loss == "yes":
         criterion = nn.BCELoss(reduction='none')
-
     else:
         criterion = nn.BCELoss()
 
@@ -514,7 +510,6 @@ def train_all(config):
     input_size = len(touseX.columns.tolist())
     output_size = len(classes)
 
-    print(classes)
     weight = {}
     for pos, mut in enumerate(classes):
         if -1. in list(np.unique(touseY.values[:, pos])):
@@ -568,8 +563,6 @@ def train_all(config):
             hidden_layers_size=hidden_layers_size,output_size=output_size,
             activation=activation,dropout_layers=dropout_layers,dropout_rate=dropout_rate,device=device)
 
-    print(model)
-
     if model.device == 'cuda':
         model = model.cuda()
         X_train = X_train.to(device=device)
@@ -577,7 +570,6 @@ def train_all(config):
 
     if weighted_loss == "yes":
         criterion = nn.BCELoss(reduction='none')
-
     else:
         criterion = nn.BCELoss()
 

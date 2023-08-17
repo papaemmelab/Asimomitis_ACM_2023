@@ -78,8 +78,7 @@ def main():
         if patience!=0:
             sys.exit('\nUse of early stopping is not selected but patience is specified. Please review the arguments. Exiting...\n')
 
-    use_gpu = torch.cuda.is_available()
-    print(use_gpu)
+    use_gpu = False #torch.cuda.is_available()
 
     if use_gpu == True:
         print("\nUsing GPU")
@@ -90,7 +89,7 @@ def main():
 
     scripts_dir = os.getcwd()+"/"
 
-    exper_name = 'Conf_run2_correp_'+str(perc_split)+ mymetric + '_scaling'+scaling+ "_Layers" + hlstr + '_dropoutlayers'+ dropoutlstr +\
+    exper_name = 'Run_Bin_'+str(perc_split)+ mymetric + '_scaling'+scaling+ "_Layers" + hlstr + '_dropoutlayers'+ dropoutlstr +\
                  "_epochs" + str(epochs) + '_pat' + str(patience) + '_ngenes' + str(ngenes) + \
                  '_cpus' + str(cpus) + '_gpus'+ str(gpus)+ '_numsamples'+str(num_samples)+ \
                  '_graceperiod' + str(grace_period)+ '_compHyb_dev' + device
@@ -156,17 +155,13 @@ def main():
         json.dump(best_config, fp,sort_keys=True, indent=4)
 
     print('\nThe parameters of the best model are saved in the %s' % outfile)
-
     print("\nFitting the best DNN model on whole training dataset...")
-    print(os.getcwd())
 
     trained_model, datadict, writer, scaler_all, device, mydata_path, resultsfolder_path = train_all(best_config,epochs_totrain)
-
     print("\nModel was trained.")
 
     final_path = mydata_path+'/'+resultsfolder_path
-
-    print("See training, validation and prediction results & visualizations here:'%s'\n" % final_path)
+    print("See training, validation & visualizations here:'%s'\n" % final_path)
 
 
 if __name__ == "__main__":

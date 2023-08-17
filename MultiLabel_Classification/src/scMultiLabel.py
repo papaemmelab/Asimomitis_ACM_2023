@@ -17,8 +17,6 @@ def main():
     print("\nWelcome to scMultiLabel!")
 
     init()
-    print(cluster_resources())
-    print(available_resources())
 
     metric_choices_min = ['loss']
 
@@ -80,9 +78,7 @@ def main():
         if patience!=0:
             sys.exit('\nUse of early stopping is not selected but patience is specified. Please review the arguments. Exiting...\n')
 
-    use_gpu = torch.cuda.is_available()
-    print(use_gpu)
-
+    use_gpu = False #torch.cuda.is_available()
 
     if use_gpu == True:
         print("\nUsing GPU")
@@ -93,10 +89,10 @@ def main():
 
     scripts_dir = os.getcwd()+"/"
 
-    exper_name = "Conf_run2_correp_rs_fixl_wei_"+mymetric+'_scal'+scaling+"_L" + hlstr +\
+    exper_name = "Run_Multi_"+mymetric+'_scal'+scaling+"_L" + hlstr +\
                  '_drl'+ dropoutlstr + "_epochs" + str(epochs) + '_pat' + str(patience) + '_ngenes' + str(ngenes) +\
                  '_cpus'+str(cpus)+ '_gpus'+ str(gpus)+ '_ns'+str(num_samples)+ '_grace'+ str(grace_period) +\
-                 '_rs'+ str(rs) + '_dev' + device #UpdCohCorr_pre05v2_threel_rev_Hyb_WT_noIDHWT_
+                 '_rs'+ str(rs) + '_dev' + device
 
     data_dir = scripts_dir+"../results/NN/model/"+patient+"/"+exper_name
 
@@ -162,17 +158,13 @@ def main():
         json.dump(best_config, fp,sort_keys=True, indent=4)
 
     print('\nThe parameters of the best model are saved in the %s' % outfile)
-
     print("\nFitting the best DNN model on whole training dataset...")
-    print(os.getcwd())
 
     trained_model, datadict, writer, scaler_all, device, mydata_path, resultsfolder_path = train_all(best_config)
-
     print("\nModel was trained.")
-    print(os.getcwd())
 
     final_path = mydata_path+'/'+resultsfolder_path
-    print("See training, validation and prediction results & visualizations here:'%s'\n" % final_path)
+    print("See training, validation & visualizations here:'%s'\n" % final_path)
 
 
 if __name__ == "__main__":

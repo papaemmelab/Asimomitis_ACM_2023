@@ -64,7 +64,6 @@ def create_datasets(config):
     if [item for sublist in list(local_hierarchies.values()) for item in sublist] != touseY.columns.tolist():
         sys.exit("Inconsistency between the order of the mutations in the labels and the hierarchies")
 
-    print("here4")
     return_dict = {
         'touseX': touseX,
         'touseY': touseY,

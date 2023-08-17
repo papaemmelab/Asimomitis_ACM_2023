@@ -88,8 +88,6 @@ def fit(config, checkpoint_dir=None, data_dir=None):
     resultsfolder = 'NN_lr'+str(learning_rate)+'_batchsize'+str(batch_size)+'_optimizer'+optimization+'_scaling'+scaling+\
                     '_weightedloss'+weighted_loss+'_weightdecay'+str(weight_decay)+'_activation'+activation+'_dropoutrate'+str(dropout_rate)
 
-    print(os.getcwd())
-
     if os.path.isdir(mydata_dir+'/'+resultsfolder):
         dir_path = mydata_dir+'/'+resultsfolder
         shutil.rmtree(dir_path)
@@ -101,7 +99,6 @@ def fit(config, checkpoint_dir=None, data_dir=None):
 
     if weighted_loss == "yes":
         weight = compute_weight_class(touseY.values)
-        print(weight)
 
     input_size = len(touseX.columns.tolist())
     output_size = 1
@@ -162,17 +159,13 @@ def fit(config, checkpoint_dir=None, data_dir=None):
 
     writer.add_graph(model, X_train.float())
 
-    print(model)
-
     if model.device == 'cuda':
         model = model.cuda()
-
         Y_train = Y_train.to(device=device)
         Y_test = Y_test.to(device=device)
 
     if weighted_loss == "yes":
         criterion = nn.BCELoss(reduction='none')
-
     else:
         criterion = nn.BCELoss()
 
@@ -444,7 +437,6 @@ def train_all(config,num_epochs):
 
     if weighted_loss=="yes":
         weight = compute_weight_class(touseY.values)
-        print(weight)
 
     input_size = len(touseX.columns.tolist())
     output_size = 1
@@ -488,8 +480,6 @@ def train_all(config,num_epochs):
     model = Network(input_size=input_size,num_hidden_layers=num_hidden_layers,
                     hidden_layers_size=hidden_layers_size,output_size=output_size,
                     activation=activation,dropout_layers=dropout_layers,dropout_rate=dropout_rate,device=device)
-
-    print(model)
 
     if model.device == 'cuda':
         model = model.cuda()

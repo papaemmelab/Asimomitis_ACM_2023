@@ -49,8 +49,6 @@ def cells_to_probs_class(net, cells, mode):
         y_hat_class = []
     else:
         y_hat_class = np.where(output.cpu().detach().numpy()<0.5, 0, 1)
-        #print(output.cpu().detach().numpy())
-    #y_hat_class = np.where(output<0.5, 0, 1)
 
     return y_hat_class, output
 

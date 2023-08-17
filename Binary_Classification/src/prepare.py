@@ -35,8 +35,6 @@ def create_datasets(config):
         print("Labels are correctly assigned and datasets are prepared")
         touseX, testX, touseY, testY = separate_testset(labels, count_mat_geno_sub,perc_split)
 
-    print(testX.shape)
-
     if (touseX.index == touseY.index).all():
         print("Training data is correctly assigned")
 
@@ -51,8 +49,6 @@ def create_datasets(config):
 
     if (testX.index == testY.index).all():
         print("Testing data is correctly assigned\n")
-
-    print("here4")
 
     return_dict = {
         'touseX': touseX,
