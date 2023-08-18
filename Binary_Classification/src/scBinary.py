@@ -95,7 +95,6 @@ def main():
                  '_graceperiod' + str(grace_period)+ '_compHyb_dev' + device
 
     data_dir = scripts_dir+"../results/NN/model/"+exper_name
-
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
 
