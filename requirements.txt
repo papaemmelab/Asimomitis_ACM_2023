@@ -71,7 +71,7 @@ kiwisolver==1.2.0
 legacy-api-wrap==1.2
 llvmlite==0.32.1
 locket==0.2.1
-lxml==4.6.2
+lxml==4.9.1
 Markdown==3.2.2
 MarkupSafe==1.1.1
 matplotlib==3.2.1
