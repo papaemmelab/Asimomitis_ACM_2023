@@ -139,7 +139,7 @@ scikit-image==0.18.3
 scikit-learn==0.23.1
 scikit-multilearn==0.2.0
 scikit-optimize==0.8.1
-scipy==1.4.1
+scipy==1.10.0
 seaborn==0.11.0
 setuptools-scm==4.1.2
 simplesam==0.1.3.1
