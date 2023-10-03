@@ -46,7 +46,7 @@ gpustat==0.6.0
 GPUtil==1.4.0
 greenlet==0.4.17
 grequests==0.6.0
-grpcio==1.29.0
+grpcio==1.53.0
 gseapy==0.10.2
 h5py==2.10.0
 HeapDict==1.0.1
